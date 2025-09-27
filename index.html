@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfect Macros – Macros done for you. Micros optimized automatically.</title>
+  <meta name="description" content="The only app that calculates exact food portions for your target macros and suggests smart swaps to fill micronutrient gaps. Join the waitlist for early access." />
+  <meta property="og:title" content="Perfect Macros – Macros done for you. Micros optimized automatically." />
+  <meta property="og:description" content="Stop wasting time on spreadsheets. Get instant meal plans with exact quantities and AI-driven micronutrient swaps." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;         /* deep navy */
+      --card: #0f172a;       /* slate-900 */
+      --muted: #94a3b8;      /* slate-400 */
+      --text: #e2e8f0;       /* slate-200 */
+      --accent: #a3e635;     /* lime-400 */
+      --accent-2: #22d3ee;   /* cyan-400 */
+      --ring: rgba(163, 230, 53, 0.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, "Helvetica Neue", sans-serif; color: var(--text); background: radial-gradient(1200px 800px at 70% -10%, rgba(34,211,238,0.15), transparent), radial-gradient(800px 600px at -5% 40%, rgba(163,230,53,0.12), transparent), var(--bg); line-height:1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px); background: rgba(11,16,32,0.6); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav { display:flex; align-items:center; justify-content: space-between; height:64px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight: 800; letter-spacing: 0.2px; }
+    .brand-badge { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 6px rgba(163,230,53,0.15); }
+    .nav a { opacity:0.9; font-weight:600; margin-left: 18px; }
+    .nav a:hover { opacity:1; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding: 12px 18px; border-radius: 12px; font-weight:700; background: linear-gradient(180deg, #1f2937, #111827); color:#e5e7eb; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 0 6px rgba(255,255,255,0.03); }
+    .btn.primary { background: linear-gradient(180deg, #22d3ee, #0ea5e9); color:#05131a; border: none; box-shadow: 0 10px 30px rgba(34,211,238,0.35); }
+    .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(34,211,238,0.45); }
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero { padding: 80px 0 40px; text-align:center; }
+    .eyebrow { color: var(--accent); font-weight:800; letter-spacing:0.12em; text-transform:uppercase; font-size: 13px; }
+    h1 { font-size: clamp(34px, 6vw, 56px); line-height:1.08; margin: 14px 0 14px; letter-spacing:-0.02em; }
+    .sub { max-width: 760px; margin: 0 auto 28px; color: var(--muted); font-size: 18px; }
+    .hero-cta { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top: 8px; }
+
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border:1px solid rgba(255,255,255,0.08); border-radius: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.35); }
+
+    .preview { margin: 40px auto 0; max-width: 980px; padding: 18px; }
+    .screen { border-radius: 14px; background: #0b1220; border: 1px solid rgba(255,255,255,0.08); padding: 18px; text-align:left; }
+    .screen .row { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .panel { background:#0d162a; border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px; }
+    .muted { color: var(--muted); }
+    .pill { display:inline-block; font-size:12px; padding:4px 10px; border-radius:999px; background: rgba(163,230,53,0.1); color: #d9f99d; border:1px solid rgba(163,230,53,0.25); }
+
+    .section { padding: 64px 0; }
+    .section h2 { font-size: clamp(26px, 4.5vw, 36px); letter-spacing:-0.01em; margin: 0 0 10px; }
+    .grid-3 { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; }
+    .grid-3 .card { padding: 20px; }
+    .li { display:flex; gap:10px; align-items:flex-start; }
+
+    .problem-list li { margin: 8px 0; }
+
+    .cta-band { text-align:center; padding: 44px 22px; }
+
+    form.waitlist { display:grid; grid-template-columns: 1fr; gap:10px; max-width: 480px; margin: 16px auto 0; }
+    .input { width:100%; padding: 14px 14px; border-radius: 12px; border:1px solid rgba(255,255,255,0.12); background: rgba(2,6,23,0.65); color: var(--text); outline:none; }
+    .input:focus { border-color: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
+
+    footer { padding: 30px 0 60px; border-top:1px solid rgba(255,255,255,0.06); color: var(--muted); font-size: 14px; }
+    .foot { display:flex; gap: 10px; align-items:center; justify-content: space-between; flex-wrap: wrap; }
+
+    @media (max-width: 860px) {
+      .screen .row { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .nav a.hide-sm { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="brand-badge"></span> Perfect Macros</div>
+      <nav>
+        <a href="#how">How it works</a>
+        <a href="#benefits" class="hide-sm">Benefits</a>
+        <a href="#waitlist" class="btn">Join the Waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container" id="home">
+      <div class="eyebrow">Early Access</div>
+      <h1>Macros done for you. <br/>Micros optimized automatically.</h1>
+      <p class="sub">Stop wasting time on spreadsheets and manual math. Perfect Macros calculates exact food portions for your target macros — and suggests smart <span class="pill">micronutrient swaps</span> to keep your body fully fueled for performance and recovery.</p>
+      <div class="hero-cta">
+        <a href="#waitlist" class="btn primary">Join the Waitlist</a>
+        <a href="#how" class="btn">See how it works</a>
+      </div>
+
+      <!-- Visual preview (static mock UI) -->
+      <div class="preview card">
+        <div class="screen">
+          <div class="row">
+            <div class="panel">
+              <h3 style="margin:0 0 6px">Today’s Targets</h3>
+              <p class="muted" style="margin:0 0 12px">Protein 205g · Carbs 530g · Fat 102g</p>
+              <div class="muted" style="font-size:14px">Foods: Chicken, Rice, Spinach, Oats, Blueberries, Almonds</div>
+              <hr style="border-color: rgba(255,255,255,0.06); margin: 14px 0">
+              <div>
+                <strong>Meal 1</strong>
+                <div class="muted" style="font-size:14px">Chicken 180g · Rice 210g · Spinach 90g</div>
+                <strong>Meal 2</strong>
+                <div class="muted" style="font-size:14px">Oats 90g · Blueberries 120g · Almonds 18g</div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3 style="margin:0 0 6px">AI Suggestions</h3>
+              <p class="muted" style="margin:0">You’re trending low on <strong>magnesium</strong> and <strong>vitamin E</strong> today.</p>
+              <ul class="problem-list">
+                <li>Swap <strong>broccoli → spinach</strong> (+magnesium)</li>
+                <li>Add <strong>almonds (18g)</strong> to Meal 2 (+vitamin E)</li>
+                <li>Or sub <strong>chicken → salmon</strong> in Meal 1 (+omega‑3)</li>
+              </ul>
+              <p class="muted" style="font-size:13px">Regenerate plan after swaps → new exact food weights in 1 click.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section container" id="problem">
+      <h2>Nutrition tracking is broken.</h2>
+      <ul class="problem-list">
+        <li>❌ Endless math just to hit your macros.</li>
+        <li>❌ Clunky logging with little guidance.</li>
+        <li>❌ Hidden micronutrient gaps that sabotage recovery, sleep, and performance.</li>
+      </ul>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section container" id="how">
+      <h2>Your personal AI nutrition coach.</h2>
+      <div class="grid-3">
+        <div class="card"><h3>1) Tell us your targets + foods</h3><p class="muted">Enter macros and choose foods you actually like to eat.</p></div>
+        <div class="card"><h3>2) Get instant exact quantities</h3><p class="muted">We generate meal plans with precise weights per meal—no spreadsheets.</p></div>
+        <div class="card"><h3>3) Optimize with smart swaps</h3><p class="muted">Close micronutrient gaps with easy swaps that auto‑recalculate your plan.</p></div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section container" id="benefits">
+      <h2>Why athletes and lifters love it</h2>
+      <div class="grid-3">
+        <div class="card"><h3>⚡ Save hours</h3><p class="muted">Macros done for you. Plans update in seconds.</p></div>
+        <div class="card"><h3>🥩 Eat your favorites</h3><p class="muted">Built around your go-to foods and routine.</p></div>
+        <div class="card"><h3>💊 Feel better</h3><p class="muted">Micronutrient coverage supports recovery, energy, sleep.</p></div>
+      </div>
+    </section>
+
+    <!-- CTA / Waitlist -->
+    <section class="section container cta-band card" id="waitlist">
+      <h2>Be the first to try it</h2>
+      <p class="muted" style="max-width:700px; margin: 0 auto 12px">We’re inviting early users who want an easier, smarter way to fuel training. Join the waitlist and we’ll notify you when spots open.</p>
+
+      <!-- Replace the action URL with your Formspree or backend endpoint -->
+      <form class="waitlist" action="https://formspree.io/f/your-form-id" method="POST">
+        <input class="input" type="email" name="email" placeholder="Your email" required aria-label="Email" />
+        <input class="input" type="text" name="name" placeholder="Your name (optional)" aria-label="Name" />
+        <button class="btn primary" type="submit">Join the Waitlist</button>
+        <input type="hidden" name="source" value="perfect-macros-landing" />
+      </form>
+      <p class="muted" style="font-size:12px; margin-top:10px">By joining, you agree to receive occasional emails about early access. We respect your inbox.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="y"></span> Perfect Macros</div>
+      <div><a href="#home">Back to top</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Update footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{ const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'}); }}));
+  </script>
+</body>
+</html>
