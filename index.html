@@ -14,12 +14,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b1020;         /* deep navy */
-      --card: #0f172a;       /* slate-900 */
-      --muted: #94a3b8;      /* slate-400 */
-      --text: #e2e8f0;       /* slate-200 */
-      --accent: #a3e635;     /* lime-400 */
-      --accent-2: #22d3ee;   /* cyan-400 */
+      --bg: #0b1020;
+      --card: #0f172a;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --accent: #a3e635;
+      --accent-2: #22d3ee;
       --ring: rgba(163, 230, 53, 0.35);
     }
     * { box-sizing: border-box; }
@@ -51,7 +51,6 @@
     .screen .row { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .panel { background:#0d162a; border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px; }
     .muted { color: var(--muted); }
-    .pill { display:inline-block; font-size:12px; padding:4px 10px; border-radius:999px; background: rgba(163,230,53,0.1); color: #d9f99d; border:1px solid rgba(163,230,53,0.25); }
 
     .section { padding: 64px 0; }
     .section h2 { font-size: clamp(26px, 4.5vw, 36px); letter-spacing:-0.01em; margin: 0 0 10px; }
@@ -94,7 +93,7 @@
     <section class="hero container" id="home">
       <div class="eyebrow">Early Access</div>
       <h1>Macros done for you. <br/>Micros optimized automatically.</h1>
-      <p class="sub">Stop wasting time on spreadsheets and manual math. Perfect Macros calculates exact food portions for your target macros — and suggests smart <span class="pill">micronutrient swaps</span> to keep your body fully fueled for performance and recovery.</p>
+      <p class="sub">Stop wasting time on spreadsheets and manual math. Perfect Macros calculates exact food portions for your target macros — and suggests smart micronutrient swaps to keep your body fully fueled for performance and recovery.</p>
       <div class="hero-cta">
         <a href="#waitlist" class="btn primary">Join the Waitlist</a>
         <a href="#how" class="btn">See how it works</a>
@@ -166,7 +165,6 @@
       <h2>Be the first to try it</h2>
       <p class="muted" style="max-width:700px; margin: 0 auto 12px">We’re inviting early users who want an easier, smarter way to fuel training. Join the waitlist and we’ll notify you when spots open.</p>
 
-      <!-- Replace the action URL with your Formspree or backend endpoint -->
       <form class="waitlist" action="https://formspree.io/f/xqayeyeo" method="POST">
         <input class="input" type="email" name="email" placeholder="Your email" required aria-label="Email" />
         <input class="input" type="text" name="name" placeholder="Your name (optional)" aria-label="Name" />
@@ -185,10 +183,13 @@
   </footer>
 
   <script>
-    // Update footer year
     document.getElementById('y').textContent = new Date().getFullYear();
-    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{ const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'}); }}));
   </script>
 </body>
 </html>
+<input type="hidden" name="_redirect" value="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/#thanks" />
+<section id="thanks" class="section container cta-band card">
+  <h2>Success! You’re on the waitlist 🎉</h2>
+  <p class="muted">We’ll email you when early access opens.</p>
+</section>
