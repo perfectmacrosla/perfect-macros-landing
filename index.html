@@ -166,7 +166,7 @@
       <h2>Be the first to try it</h2>
       <p class="muted" style="max-width:700px; margin: 0 auto 12px">We’re inviting early users who want an easier, smarter way to fuel training. Join the waitlist and we’ll notify you when spots open.</p>
 
-      <form class="waitlist" action="https://formspree.io/f/xqayeyeo" method="POST">
+      <form id="waitlist-form" class="waitlist" action="https://formspree.io/f/xqayeyeo" method="POST">
         <input class="input" type="email" name="email" placeholder="Your email" required aria-label="Email" />
         <input class="input" type="text" name="name" placeholder="Your name (optional)" aria-label="Name" />
         <button class="btn primary" type="submit">Join the Waitlist</button>
@@ -182,11 +182,40 @@
       <div><a href="#home">Back to top</a></div>
     </div>
   </footer>
-
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{ const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'}); }}));
   </script>
+  <script>
+    const form = document.getElementById('waitlist-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            window.location.hash = '#thanks';
+            form.reset();
+          } else {
+            window.location.hash = '#thanks'; // fallback
+          }
+        } catch (err) {
+          alert('Network error. Please try again.');
+        }
+      });
+    }
+  </script>
+<section id="thanks" class="section container cta-band card">
+  <h2>Success! You’re on the waitlist 🎉</h2>
+  <p class="muted">We’ll email you when early access opens.</p>
+</section>
+</body>
+</html>
 </body>
 </html>
 <input type="hidden" name="_redirect" value="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/#thanks" />
