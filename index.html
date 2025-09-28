@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0b1020;
@@ -25,7 +26,16 @@
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
-    body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, "Helvetica Neue", sans-serif; color: var(--text); background: radial-gradient(1200px 800px at 70% -10%, rgba(34,211,238,0.15), transparent), radial-gradient(800px 600px at -5% 40%, rgba(163,230,53,0.12), transparent), var(--bg); line-height:1.6; }
+    body {
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 70% -10%, rgba(34,211,238,0.15), transparent),
+        radial-gradient(800px 600px at -5% 40%, rgba(163,230,53,0.12), transparent),
+        var(--bg);
+      line-height:1.6;
+    }
     a { color: inherit; text-decoration: none; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
     header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px); background: rgba(11,16,32,0.6); border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -34,7 +44,7 @@
     .brand-badge { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 6px rgba(163,230,53,0.15); }
     .nav a { opacity:0.9; font-weight:600; margin-left: 18px; }
     .nav a:hover { opacity:1; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding: 12px 18px; border-radius: 12px; font-weight:700; background: linear-gradient(180deg, #1f2937, #111827); color:#e5e7eb; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 0 6px rgba(255,255,255,0.03); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding: 12px 18px; border-radius: 12px; font-weight:700; background: linear-gradient(180deg, #1f2937, #111827); color:#e5e7eb; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 0 6px rgba(255,255,255,0.03); transition: transform .15s ease, box-shadow .15s ease; }
     .btn.primary { background: linear-gradient(180deg, #22d3ee, #0ea5e9); color:#05131a; border: none; box-shadow: 0 10px 30px rgba(34,211,238,0.35); }
     .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(34,211,238,0.45); }
     .btn:hover { transform: translateY(-1px); }
@@ -74,6 +84,19 @@
       .screen .row { grid-template-columns: 1fr; }
       .grid-3 { grid-template-columns: 1fr; }
       .nav a.hide-sm { display:none; }
+    }
+
+    /* ---------- view switching for the Thanks screen ---------- */
+    #thanks[hidden] { display: none; }
+    body[data-route="thanks"] main,
+    body[data-route="thanks"] header,
+    body[data-route="thanks"] footer { display: none; }
+
+    #thanks.fullscreen {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 0 20px;
     }
   </style>
 </head>
@@ -118,11 +141,11 @@
             </div>
             <div class="panel">
               <h3 style="margin:0 0 6px">AI Suggestions</h3>
-              <p class="muted" style="margin:0">You’re trending low on <strong>magnesium</strong> and <strong>vitamin E</strong> today.</p>
+              <p class="muted" style="margin:0">You’re trending low on <strong>magnesium</strong> and <strong>vitamin E</strong> today.</p>
               <ul class="problem-list">
                 <li>Swap <strong>broccoli → spinach</strong> (+magnesium)</li>
-                <li>Add <strong>almonds (18g)</strong> to Meal 2 (+vitamin E)</li>
-                <li>Or sub <strong>chicken → salmon</strong> in Meal 1 (+omega‑3)</li>
+                <li>Add <strong>almonds (18g)</strong> to Meal 2 (+vitamin E)</li>
+                <li>Or sub <strong>chicken → salmon</strong> in Meal 1 (+omega-3)</li>
               </ul>
               <p class="muted" style="font-size:13px">Regenerate plan after swaps → new exact food weights in 1 click.</p>
             </div>
@@ -147,7 +170,7 @@
       <div class="grid-3">
         <div class="card"><h3>1) Tell us your targets + foods</h3><p class="muted">Enter macros and choose foods you actually like to eat.</p></div>
         <div class="card"><h3>2) Get instant exact quantities</h3><p class="muted">We generate meal plans with precise weights per meal—no spreadsheets.</p></div>
-        <div class="card"><h3>3) Optimize with smart swaps</h3><p class="muted">Close micronutrient gaps with easy swaps that auto‑recalculate your plan.</p></div>
+        <div class="card"><h3>3) Optimize with smart swaps</h3><p class="muted">Close micronutrient gaps with easy swaps that auto-recalculate your plan.</p></div>
       </div>
     </section>
 
@@ -176,18 +199,61 @@
     </section>
   </main>
 
+  <!-- Thanks Screen (hidden until after form submit) -->
+  <section id="thanks" class="section container cta-band card fullscreen" hidden>
+    <h2>Success! You’re on the waitlist 🎉</h2>
+    <p class="muted">We’ll email you when early access opens.</p>
+    <div style="margin-top:16px">
+      <a href="#home" class="btn">Back to site</a>
+    </div>
+  </section>
+
   <footer>
     <div class="container foot">
       <div>© <span id="y"></span> Perfect Macros</div>
       <div><a href="#home">Back to top</a></div>
     </div>
   </footer>
+
   <script>
+    // Set current year
     document.getElementById('y').textContent = new Date().getFullYear();
-    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{ const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'}); }}));
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a =>
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id.length > 1) {
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      })
+    );
   </script>
+
   <script>
     const form = document.getElementById('waitlist-form');
+
+    // Simple hash router to toggle screens
+    function route() {
+      const isThanks = location.hash === '#thanks';
+      document.body.dataset.route = isThanks ? 'thanks' : 'home';
+      const thanks = document.getElementById('thanks');
+      if (thanks) {
+        thanks.hidden = !isThanks;
+        if (isThanks) {
+          // move focus for accessibility
+          const h2 = thanks.querySelector('h2');
+          if (h2) h2.tabIndex = -1, h2.focus();
+        }
+      }
+    }
+    window.addEventListener('hashchange', route);
+    window.addEventListener('DOMContentLoaded', route);
+
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -199,27 +265,15 @@
             headers: { 'Accept': 'application/json' }
           });
           if (res.ok) {
-            window.location.hash = '#thanks';
             form.reset();
-          } else {
-            window.location.hash = '#thanks'; // fallback
           }
+          // show the Thanks screen (single place)
+          window.location.hash = '#thanks';
         } catch (err) {
           alert('Network error. Please try again.');
         }
       });
     }
   </script>
-<section id="thanks" class="section container cta-band card">
-  <h2>Success! You’re on the waitlist 🎉</h2>
-  <p class="muted">We’ll email you when early access opens.</p>
-</section>
 </body>
 </html>
-</body>
-</html>
-<input type="hidden" name="_redirect" value="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/#thanks" />
-<section id="thanks" class="section container cta-band card">
-  <h2>Success! You’re on the waitlist 🎉</h2>
-  <p class="muted">We’ll email you when early access opens.</p>
-</section>
